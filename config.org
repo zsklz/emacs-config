@@ -1,4 +1,4 @@
-#+TITLE: Zsmacs
+#+TITLE: zskl emacs config
 
 * Packages
 #+begin_src emacs-lisp

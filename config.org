@@ -68,6 +68,7 @@
 	  (tags . "  %?b%? e")
 	  (search . "  %?b%? e")))
   (setq org-agenda-current-time-string "> now <")
+  (setq org-agenda-todo-ignore-with-date t)
   (setq org-agenda-custom-commands
 	'(("i" "Inbox"
 	   ((tags "inbox"

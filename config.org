@@ -24,114 +24,119 @@
 #+end_src
 * Org
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c c") #'org-capture)
-  (setq org-directory "~/Org/")
-  (setq org-roam-directory (file-truename "~/Org/Roam"))
-  (setq org-agenda-window-setup 'only-window)
-  (setq org-refile-use-outline-path 'file)
-  (setq org-outline-path-complete-in-steps t)
-  (add-to-list 'org-modules 'org-habit)
-  (eval-after-load 'org
-    '(org-load-modules-maybe t))
-  (setq org-todo-keywords
-	'((sequence
-	   "TODO(t)"
-	   "NEXT(n)"
-	   "|"
-	   "DONE(d)")))
+    (global-set-key (kbd "C-c a") #'org-agenda)
+    (global-set-key (kbd "C-c c") #'org-capture)
+    (setq org-directory "~/Org/")
+    (setq org-roam-directory (file-truename "~/Org/Roam"))
+    (setq org-agenda-window-setup 'only-window)
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps t)
+    (add-to-list 'org-modules 'org-habit)
+    (eval-after-load 'org
+      '(org-load-modules-maybe t))
+    (setq org-todo-keywords
+	  '((sequence
+	     "TODO(t)"
+	     "NEXT(n)"
+	     "|"
+	     "DONE(d)")))
 
-  (setq org-agenda-files '("~/Org/inbox.org"
-			   "~/Org/gtd.org"))
+    (setq org-agenda-files '("~/Org/inbox.org"
+			     "~/Org/gtd.org"))
 
-  (setq org-capture-templates '(("i" "[inbox]" entry
-				 (file "~/Org/inbox.org")
-				 "* %?")))
+    (setq org-capture-templates '(("i" "[inbox]" entry
+				   (file "~/Org/inbox.org")
+				   "* %?")))
 
-  (setq org-refile-targets '(("~/Org/gtd.org" :maxlevel . 3)
-			     ("~/Org/someday.org" :maxlevel . 3)))
+    (setq org-refile-targets '(("~/Org/gtd.org" :maxlevel . 3)
+			       ("~/Org/someday.org" :maxlevel . 3)))
 
-  (setq-default bookmark-set-fringe-mark nil)
-  (setq org-log-done 'time)
-  (setq org-archive-location "~/Org/Archive/2023-archive.org::datetree/")
-  (setq org-archive-save-context-info '(olpath itags ltags))
-  (setq org-startup-folded t)
-  (setq org-todo-repeat-to-state t)
-  (setq org-stuck-projects '("+LEVEL=1+project/-DONE" ("TODO" "NEXT")))
-  (setq org-tags-exclude-from-inheritance '("project"))
-  ;; Agenda
-  ;; TODO update format strings
-  (setq org-agenda-prefix-format
-	'((agenda . "  %t")
-	  (todo . "  %?b%? e")
-	  (tags . "  %?b%? e")
-	  (search . "  %?b%? e")))
-  (setq org-agenda-current-time-string "> now <")
-  (setq org-agenda-todo-ignore-with-date t)
-  (setq org-agenda-custom-commands
-	'(("i" "Inbox"
-	   ((tags "inbox"
-		  ((org-agenda-overriding-header "Inbox:")
-		   (org-agenda-files '("~/Org/inbox.org"))
-		   (org-agenda-prefix-format "  ")))))
-	  ("n" "Next Actions"
-	   ((todo "NEXT"
-		  ((org-agenda-overriding-header "Next Actions:")
-		   (org-agenda-files '("~/Org/gtd.org"))
-		   (org-agenda-prefix-format "  ")))))
-	  ("w" "Waiting List"
-	   ((tags "wait"
-		  ((org-agenda-overriding-header "Waiting List:")
-		   (org-agenda-files '("~/Org/gtd.org"))
-		   (org-agenda-prefix-format "  ")))))
-	  ("c" "Completed Today"
-	   ((tags "CLOSED>=\"<today>\""
-		  ((org-agenda-overriding-header "Completed Today:")
-		   (org-agenda-files '("~/Org/gtd.org"))
-		   (org-agenda-prefix-format "  ")))))))
+    (setq-default bookmark-set-fringe-mark nil)
+    (setq org-log-done 'time)
+    (setq org-archive-location "~/Org/Archive/2023-archive.org::datetree/")
+    (setq org-archive-save-context-info '(olpath itags ltags))
+    (setq org-startup-folded t)
+    (setq org-todo-repeat-to-state t)
+    (setq org-stuck-projects '("+LEVEL=1+project/-DONE" ("TODO" "NEXT")))
+    (setq org-tags-exclude-from-inheritance '("project"))
+    ;; Agenda
+    (setq org-agenda-prefix-format
+	  '((agenda . "  %-8t%b")
+	    (todo . "  %?b%? e")
+	    (tags . "  %?b")
+	    (search . "  %?b")))
+    (setq org-agenda-current-time-string "> now <"
+	  org-agenda-time-grid
+	  '((daily today require-timed)
+	    (800 1000 1200 1400 1600 1800 2000)
+	    ":" "")
+	  org-agenda-use-time-grid nil)
+    (setq org-agenda-todo-ignore-with-date t)
+    (setq org-agenda-custom-commands
+	  '(("i" "Inbox"
+	     ((tags "inbox"
+		    ((org-agenda-overriding-header "Inbox:")
+		     (org-agenda-files '("~/Org/inbox.org"))
+		     (org-agenda-prefix-format "  ")))))
+	    ;; TODO consider removing this query
+	    ("n" "Next Actions"
+	     ((todo "NEXT"
+		    ((org-agenda-overriding-header "Next Actions:")
+		     (org-agenda-files '("~/Org/gtd.org"))
+		     (org-agenda-prefix-format "  ")))))
+	    ("w" "Waiting List"
+	     ((tags "wait"
+		    ((org-agenda-overriding-header "Waiting List:")
+		     (org-agenda-files '("~/Org/gtd.org"))
+		     (org-agenda-prefix-format "  ")))))
+	    ("c" "Completed Today"
+	     ((tags "CLOSED>=\"<today>\""
+		    ((org-agenda-overriding-header "Completed Today:")
+		     (org-agenda-files '("~/Org/gtd.org"))
+		     (org-agenda-prefix-format "  ")))))))
 
 
-  ;; (setq org-agenda-custom-commands
-  ;;       '(("g" "GTD agenda"
-  ;; 	 ((agenda ""
-  ;; 		  ((org-agenda-span 'day)
-  ;; 		   (org-agenda-start-day "")
-  ;; 		   (org-agenda-prefix-format "  %s%?b%?-12t")
-  ;; 		   (org-agenda-current-time-string "> now <")
-  ;; 		   (org-agenda-skip-scheduled-if-done t)
-  ;; 		   (org-agenda-skip-deadline-if-done t)
-  ;; 		   (org-agenda-skip-timestamp-if-done t)
-  ;; 		   (org-agenda-files '("~/Org/gtd.org"))))
-  ;; 	  (todo "NEXT"
-  ;; 		((org-agenda-overriding-header "\nNext actions:")
-  ;; 		 (org-agenda-prefix-format "  %?b%? e")
-  ;; 		 (org-agenda-files '("~/Org/gtd.org"))))
-  ;; 	  (todo "TODO"
-  ;; 		((org-agenda-overriding-header "\nTasks:")
-  ;; 		 (org-agenda-prefix-format "  %?b%? e")
-  ;; 		 (org-agenda-files '("~/Org/gtd.org"))))
-  ;; 	  (stuck ""
-  ;; 		 ((org-agenda-overriding-header "\nStuck projects:")
-  ;; 		  (org-agenda-prefix-format "  ")
-  ;; 		  (org-agenda-files '("~/Org/gtd.org"))))
-  ;; 	  (tags "inbox"
-  ;; 		((org-agenda-overriding-header "\nInbox:")
-  ;; 		 (org-agenda-prefix-format "  ")
-  ;; 		 (org-agenda-files '("~/Org/inbox.org"))))
-  ;; 	  (tags "wait"
-  ;; 		((org-agenda-overriding-header "\nWaiting list:")
-  ;; 		 (org-agenda-prefix-format "  ")
-  ;; 		 (org-agenda-files '("~/Org/gtd.org"))))
-  ;; 	  (tags "CLOSED>=\"<today>\""
-  ;; 		((org-agenda-overriding-header "\nCompleted today:")
-  ;; 		 (org-agenda-prefix-format "  %?b")
-  ;; 		 (org-agenda-files '("~/Org/gtd.org")))))
-  ;; 	 ((org-agenda-compact-blocks t)))))
+    ;; (setq org-agenda-custom-commands
+    ;;       '(("g" "GTD agenda"
+    ;; 	 ((agenda ""
+    ;; 		  ((org-agenda-span 'day)
+    ;; 		   (org-agenda-start-day "")
+    ;; 		   (org-agenda-prefix-format "  %s%?b%?-12t")
+    ;; 		   (org-agenda-current-time-string "> now <")
+    ;; 		   (org-agenda-skip-scheduled-if-done t)
+    ;; 		   (org-agenda-skip-deadline-if-done t)
+    ;; 		   (org-agenda-skip-timestamp-if-done t)
+    ;; 		   (org-agenda-files '("~/Org/gtd.org"))))
+    ;; 	  (todo "NEXT"
+    ;; 		((org-agenda-overriding-header "\nNext actions:")
+    ;; 		 (org-agenda-prefix-format "  %?b%? e")
+    ;; 		 (org-agenda-files '("~/Org/gtd.org"))))
+    ;; 	  (todo "TODO"
+    ;; 		((org-agenda-overriding-header "\nTasks:")
+    ;; 		 (org-agenda-prefix-format "  %?b%? e")
+    ;; 		 (org-agenda-files '("~/Org/gtd.org"))))
+    ;; 	  (stuck ""
+    ;; 		 ((org-agenda-overriding-header "\nStuck projects:")
+    ;; 		  (org-agenda-prefix-format "  ")
+    ;; 		  (org-agenda-files '("~/Org/gtd.org"))))
+    ;; 	  (tags "inbox"
+    ;; 		((org-agenda-overriding-header "\nInbox:")
+    ;; 		 (org-agenda-prefix-format "  ")
+    ;; 		 (org-agenda-files '("~/Org/inbox.org"))))
+    ;; 	  (tags "wait"
+    ;; 		((org-agenda-overriding-header "\nWaiting list:")
+    ;; 		 (org-agenda-prefix-format "  ")
+    ;; 		 (org-agenda-files '("~/Org/gtd.org"))))
+    ;; 	  (tags "CLOSED>=\"<today>\""
+    ;; 		((org-agenda-overriding-header "\nCompleted today:")
+    ;; 		 (org-agenda-prefix-format "  %?b")
+    ;; 		 (org-agenda-files '("~/Org/gtd.org")))))
+    ;; 	 ((org-agenda-compact-blocks t)))))
 
-  (setq org-tags-column 0)
-  (setq org-agenda-breadcrumbs-separator "/")
-  ;; TODO should i keep this?
-  (setq org-agenda-dim-blocked-tasks nil)
+    (setq org-tags-column 0)
+    (setq org-agenda-breadcrumbs-separator "/")
+    ;; TODO should i keep this?
+    (setq org-agenda-dim-blocked-tasks nil)
 
 #+end_src
 * Elfeed

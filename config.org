@@ -25,7 +25,7 @@
 * Org
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c c") #'org-capture)
+  (global-set-key (kbd "C-c k") #'org-capture)
   (setq org-directory "~/Org/")
   (setq org-roam-directory (file-truename "~/Org/Roam"))
   (setq org-agenda-window-setup 'only-window)

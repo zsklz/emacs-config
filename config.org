@@ -84,12 +84,12 @@
 	   ((tags "wait"
 		  ((org-agenda-overriding-header "Waiting List:")
 		   (org-agenda-files '("~/Org/gtd.org"))
-		   (org-agenda-prefix-format "  ")))))
+		   (org-agenda-prefix-format "  %?b")))))
 	  ("c" "Completed Today"
 	   ((tags "CLOSED>=\"<today>\""
 		  ((org-agenda-overriding-header "Completed Today:")
 		   (org-agenda-files '("~/Org/gtd.org"))
-		   (org-agenda-prefix-format "  ")))))))
+		   (org-agenda-prefix-format "  %?b")))))))
 
 #+end_src
 * Elfeed

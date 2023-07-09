@@ -63,7 +63,7 @@
   ;; Agenda
   (setq org-agenda-prefix-format
 	'((agenda . "  %-8t%b")
-	  (todo . "  %?b%? e")
+	  (todo . "  %?b")
 	  (tags . "  %?b")
 	  (search . "  %?b")))
   (setq org-agenda-current-time-string "> now <"

@@ -48,8 +48,8 @@
 				 (file "~/Org/inbox.org")
 				 "* %?")))
 
-  (setq org-refile-targets '(("~/Org/gtd.org" :maxlevel . 3)
-			     ("~/Org/someday.org" :maxlevel . 3)))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 5)
+			     ("~/Org/someday.org" :maxlevel . 5)))
 
   (setq-default bookmark-set-fringe-mark nil)
   (setq org-log-done 'time)

@@ -62,10 +62,10 @@
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
   (setq org-agenda-prefix-format
-	'((agenda . "  %?t%s%b")
-	  (todo . "  %-6e")
-	  (tags . "  %?b")
-	  (search . "  %?b")))
+	'((agenda . "  %-12t%s%?b")
+	  (todo . "  %-12:c%-6e")
+	  (tags . "  %-12:c")
+	  (search . "  %-12:c")))
   (setq org-agenda-current-time-string "> now <"
 	org-agenda-time-grid
 	'((daily today require-timed)
@@ -91,7 +91,7 @@
 	   ((tags "CLOSED>=\"<today>\""
 		  ((org-agenda-overriding-header "Completed Today:")
 		   (org-agenda-files '("~/Org/gtd.org"))
-		   (org-agenda-prefix-format "  %?b")))))))
+		   (org-agenda-prefix-format " %-12:c")))))))
 
 #+end_src
 * Elfeed

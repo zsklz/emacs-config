@@ -42,8 +42,7 @@
 	   "|"
 	   "DONE(d)")))
 
-  (setq org-agenda-files '("~/Org/inbox.org"
-			   "~/Org/gtd.org"))
+  (setq org-agenda-files "~/Org/agenda.org")
 
   (setq org-capture-templates '(("i" "[inbox]" entry
 				 (file "~/Org/inbox.org")

@@ -52,7 +52,7 @@
 
   (setq-default bookmark-set-fringe-mark nil)
   (setq org-log-done 'time)
-  (setq org-archive-location "~/Org/Archive/2023-archive.org::datetree/")
+  (setq org-archive-location "~/Org/archive.org::datetree/")
   (setq org-archive-save-context-info '(category olpath itags ltags))
   (setq org-archive-subtree-save-file-p t)
   (setq org-startup-folded t)

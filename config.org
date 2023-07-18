@@ -45,7 +45,9 @@
 
   (setq org-capture-templates '(("i" "[inbox]" entry
 				 (file "~/Org/inbox.org")
-				 "* %?")))
+				 "* %?")
+				("d" "[diary]" plain
+				 (file+olp+datetree "~/Org/diary.org"))))
 
   (setq org-refile-targets '((org-agenda-files :maxlevel . 5)
 			     ("~/Org/someday.org" :maxlevel . 5)))

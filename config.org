@@ -63,7 +63,7 @@
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
   (setq org-agenda-prefix-format
-	'((agenda . "  %-12t%s%?b")
+	'((agenda . "  %-12t%s%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%?b")
 	  (todo . "  %-12:c%-6e")
 	  (tags . "  %-12:c")
 	  (search . "  %-12:c")))

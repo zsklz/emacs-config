@@ -59,11 +59,11 @@
   (setq org-archive-subtree-save-file-p t)
   (setq org-startup-folded t)
   (setq org-todo-repeat-to-state t)
-  (setq org-stuck-projects '("+LEVEL=1+project/-DONE" ("TODO" "NEXT")))
+  (setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT")))
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
   (setq org-agenda-prefix-format
-	'((agenda . "  %-12t%s%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%?b")
+	'((agenda . "  %-12t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s%?b")
 	  (todo . "  %-12:c%-6e")
 	  (tags . "  %-12:c")
 	  (search . "  %-12:c")))

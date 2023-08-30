@@ -92,6 +92,37 @@
 		  ((org-agenda-overriding-header "Completed Today:")
 		   (org-agenda-prefix-format " %-12:c")))))))
 
+  (defun my-sitemap-format-entry (entry style project)
+    (cond ((not (directory-name-p entry))
+	   (format "%s - [[file:%s][%s]]"
+		   (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
+		   entry
+		   (org-publish-find-title entry project)))
+	  ((eq style 'tree)
+	   ;; Return only last subdir.
+	   (file-name-nondirectory (directory-file-name entry)))
+	  (t entry)))
+
+  ;; zskl.com
+  (setq org-publish-project-alist
+	'(("zsklz.com"
+	   :base-directory "~/Public/zsklz.com/content/"
+	   :publishing-directory "~/Public/zsklz.com/public/"
+	   :publishing-function org-html-publish-to-html
+	   :section-numbers nil
+	   :with-toc nil
+	   :recursive t
+	   :html-doctype "html5"
+	   :html-html5-fancy t
+	   :html-postamble nil
+	   ;; :html-link-home 
+	   ;; :auto-sitemap t
+	   ;; :sitemap-style list
+	   ;; :sitemap-format-entry my-sitemap-format-entry
+	   ;; :sitemap-sort-files anti-chronologically
+	   ;; :sitemap-title "zsklz.com sitemap:"
+	   )))
+
 #+end_src
 * Elfeed
 #+begin_src emacs-lisp

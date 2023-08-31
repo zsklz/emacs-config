@@ -103,7 +103,7 @@
 	   (file-name-nondirectory (directory-file-name entry)))
 	  (t entry)))
 
-  ;; zskl.com
+  ;; zsklz.com
   (setq org-publish-project-alist
 	'(("zsklz.com"
 	   :base-directory "~/Public/zsklz.com/content/"

@@ -24,104 +24,106 @@
 #+end_src
 * Org
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c k") #'org-capture)
-  (setq org-directory "~/Org/")
-  (setq org-agenda-window-setup 'only-window)
-  (setq org-refile-use-outline-path 'file)
-  (setq org-outline-path-complete-in-steps t)
-  (setq org-tags-column 0)
-  (add-to-list 'org-modules 'org-habit)
-  (eval-after-load 'org
-    '(org-load-modules-maybe t))
-  (setq org-todo-keywords
-	'((sequence
-	   "TODO(t)"
-	   "NEXT(n)"
-	   "|"
-	   "DONE(d)")))
+	(global-set-key (kbd "C-c a") #'org-agenda)
+	(global-set-key (kbd "C-c k") #'org-capture)
+	(setq org-directory "~/Org/")
+	(setq org-agenda-window-setup 'only-window)
+	(setq org-refile-use-outline-path 'file)
+	(setq org-outline-path-complete-in-steps t)
+	(setq org-tags-column 0)
+	(add-to-list 'org-modules 'org-habit)
+	(eval-after-load 'org
+	  '(org-load-modules-maybe t))
+	(setq org-todo-keywords
+	      '((sequence
+		 "TODO(t)"
+		 "NEXT(n)"
+		 "|"
+		 "DONE(d)")))
 
-  (setq org-agenda-files "~/Org/agenda.org")
+	(setq org-agenda-files "~/Org/agenda.org")
 
-  (setq org-capture-templates '(("i" "[inbox]" entry
-				 (file "~/Org/inbox.org")
-				 "* %?")
-				("d" "[diary]" plain
-				 (file+olp+datetree "~/Org/diary.org"))))
+	(setq org-capture-templates '(("i" "[inbox]" entry
+				       (file "~/Org/inbox.org")
+				       "* %?")
+				      ("d" "[diary]" plain
+				       (file+olp+datetree "~/Org/diary.org"))))
 
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 5)
-			     ("~/Org/someday.org" :maxlevel . 5)))
+	(setq org-refile-targets '((org-agenda-files :maxlevel . 5)
+				   ("~/Org/someday.org" :maxlevel . 5)))
 
-  (setq-default bookmark-set-fringe-mark nil)
-  (setq org-log-done 'time)
-  (setq org-archive-location "~/Org/archive.org::datetree/")
-  (setq org-archive-save-context-info '(category olpath itags ltags))
-  (setq org-archive-subtree-save-file-p t)
-  (setq org-startup-folded t)
-  (setq org-todo-repeat-to-state t)
-  (setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT")))
-  (setq org-tags-exclude-from-inheritance '("project"))
-  ;; Agenda
-  (setq org-agenda-prefix-format
-	'((agenda . "  %-12t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s%?b")
-	  (todo . "  %-12:c%-6e")
-	  (tags . "  %-12:c")
-	  (search . "  %-12:c")))
-  (setq org-agenda-current-time-string "> now <"
-	org-agenda-time-grid
-	'((daily today require-timed)
-	  (800 1000 1200 1400 1600 1800 2000)
-	  " " "")
-	org-agenda-use-time-grid nil
-	org-agenda-breadcrumbs-separator "/"
-	org-agenda-skip-scheduled-if-done t
-	org-agenda-skip-deadline-if-done t)
-  (setq org-agenda-todo-ignore-with-date t)
-  (setq org-agenda-custom-commands
-	'(("i" "Inbox"
-	   ((tags "inbox"
-		  ((org-agenda-overriding-header "Inbox:")
-		   (org-agenda-files '("~/Org/inbox.org"))
-		   (org-agenda-prefix-format "  ")))))
-	  ("w" "Waiting List"
-	   ((tags "wait"
-		  ((org-agenda-overriding-header "Waiting List:")
-		   (org-agenda-prefix-format "  %?b")))))
-	  ("c" "Completed Today"
-	   ((tags "CLOSED>=\"<today>\""
-		  ((org-agenda-overriding-header "Completed Today:")
-		   (org-agenda-prefix-format " %-12:c")))))))
+	(setq-default bookmark-set-fringe-mark nil)
+	(setq org-log-done 'time)
+	(setq org-archive-location "~/Org/archive.org::datetree/")
+	(setq org-archive-save-context-info '(category olpath itags ltags))
+	(setq org-archive-subtree-save-file-p t)
+	(setq org-startup-folded t)
+	(setq org-todo-repeat-to-state t)
+	(setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT")))
+	(setq org-tags-exclude-from-inheritance '("project"))
+	;; Agenda
+	(setq org-agenda-prefix-format
+	      '((agenda . "  %-12t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s%?b")
+		(todo . "  %-12:c%-6e")
+		(tags . "  %-12:c")
+		(search . "  %-12:c")))
+	(setq org-agenda-current-time-string "> now <"
+	      org-agenda-time-grid
+	      '((daily today require-timed)
+		(800 1000 1200 1400 1600 1800 2000)
+		" " "")
+	      org-agenda-use-time-grid nil
+	      org-agenda-breadcrumbs-separator "/"
+	      org-agenda-skip-scheduled-if-done t
+	      org-agenda-skip-deadline-if-done t
+	      org-agenda-todo-ignore-deadlines 'far
+	      org-agenda-todo-ignore-scheduled 'future
+	      org-agenda-todo-ignore-timestamp 'future)
+	(setq org-agenda-custom-commands
+	      '(("i" "Inbox"
+		 ((tags "inbox"
+			((org-agenda-overriding-header "Inbox:")
+			 (org-agenda-files '("~/Org/inbox.org"))
+			 (org-agenda-prefix-format "  ")))))
+		("w" "Waiting List"
+		 ((tags "wait"
+			((org-agenda-overriding-header "Waiting List:")
+			 (org-agenda-prefix-format "  %?b")))))
+		("c" "Completed Today"
+		 ((tags "CLOSED>=\"<today>\""
+			((org-agenda-overriding-header "Completed Today:")
+			 (org-agenda-prefix-format " %-12:c")))))))
 
-  (defun my-sitemap-format-entry (entry style project)
-    (cond ((not (directory-name-p entry))
-	   (format "%s - [[file:%s][%s]]"
-		   (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
-		   entry
-		   (org-publish-find-title entry project)))
-	  ((eq style 'tree)
-	   ;; Return only last subdir.
-	   (file-name-nondirectory (directory-file-name entry)))
-	  (t entry)))
+	(defun my-sitemap-format-entry (entry style project)
+	  (cond ((not (directory-name-p entry))
+		 (format "%s - [[file:%s][%s]]"
+			 (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
+			 entry
+			 (org-publish-find-title entry project)))
+		((eq style 'tree)
+		 ;; Return only last subdir.
+		 (file-name-nondirectory (directory-file-name entry)))
+		(t entry)))
 
-  ;; zsklz.com
-  (setq org-publish-project-alist
-	'(("zsklz.com"
-	   :base-directory "~/Public/zsklz.com/content/"
-	   :publishing-directory "~/Public/zsklz.com/public/"
-	   :publishing-function org-html-publish-to-html
-	   :section-numbers nil
-	   :with-toc nil
-	   :recursive t
-	   :html-doctype "html5"
-	   :html-html5-fancy t
-	   :html-postamble nil
-	   ;; :html-link-home 
-	   ;; :auto-sitemap t
-	   ;; :sitemap-style list
-	   ;; :sitemap-format-entry my-sitemap-format-entry
-	   ;; :sitemap-sort-files anti-chronologically
-	   ;; :sitemap-title "zsklz.com sitemap:"
-	   )))
+	;; zsklz.com
+	(setq org-publish-project-alist
+	      '(("zsklz.com"
+		 :base-directory "~/Public/zsklz.com/content/"
+		 :publishing-directory "~/Public/zsklz.com/public/"
+		 :publishing-function org-html-publish-to-html
+		 :section-numbers nil
+		 :with-toc nil
+		 :recursive t
+		 :html-doctype "html5"
+		 :html-html5-fancy t
+		 :html-postamble nil
+		 ;; :html-link-home 
+		 ;; :auto-sitemap t
+		 ;; :sitemap-style list
+		 ;; :sitemap-format-entry my-sitemap-format-entry
+		 ;; :sitemap-sort-files anti-chronologically
+		 ;; :sitemap-title "zsklz.com sitemap:"
+		 )))
 
 #+end_src
 * Elfeed

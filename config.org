@@ -59,7 +59,7 @@
   (setq org-archive-subtree-save-file-p t)
   (setq org-startup-folded t)
   (setq org-todo-repeat-to-state t)
-  (setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT")))
+  (setq org-stuck-projects '("+project-someday-maybe/-DONE" ("NEXT")))
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
   (setq org-agenda-prefix-format

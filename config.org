@@ -47,7 +47,6 @@
 
   (setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
   (setq org-log-done 'time)
-  (setq org-archive-location "~/Org/archive.org::datetree/")
   (setq org-archive-save-context-info '(category olpath itags ltags))
   (setq org-archive-subtree-save-file-p t)
   (setq org-startup-folded t)
@@ -56,6 +55,7 @@
   (setq org-stuck-projects '("+project-someday-maybe/-DONE" ("NEXT")))
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-agenda-prefix-format
 	'((agenda . "  %-10t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s")
 	  (todo . "  %(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))")

@@ -52,7 +52,7 @@
   (setq org-startup-folded t)
   (setq org-agenda-inhibit-startup t)
   (setq org-todo-repeat-to-state t)
-  (setq org-stuck-projects '("+project-someday-maybe/-DONE" ("NEXT")))
+  (setq org-stuck-projects '("+project-someday-maybe-TODO=\"DONE\"-SCHEDULED>\"<today>\"" ("NEXT") ("wait")))
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
   (setq org-agenda-text-search-extra-files '(agenda-archives))

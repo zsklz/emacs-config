@@ -55,7 +55,7 @@
   (setq org-stuck-projects '("+project-someday-maybe-TODO=\"DONE\"-SCHEDULED>\"<today>\"" ("NEXT") ("wait")))
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
-  (setq org-agenda-files "agenda.org")
+  (setq org-agenda-files "~/Org/agenda.org")
   (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-agenda-prefix-format
 	'((agenda . "  %-10t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s")

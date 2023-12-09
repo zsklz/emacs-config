@@ -55,6 +55,7 @@
   (setq org-stuck-projects '("+project-someday-maybe-TODO=\"DONE\"-SCHEDULED>\"<today>\"" ("NEXT") ("wait")))
   (setq org-tags-exclude-from-inheritance '("project"))
   ;; Agenda
+  (setq org-agenda-files "agenda.org")
   (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-agenda-prefix-format
 	'((agenda . "  %-10t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s")
@@ -111,13 +112,6 @@
        (setq rmh-elfeed-org-files (list "~/Org/elfeed.org"))
        :config
        (elfeed-org))
-#+end_src
-* Which-key
-#+begin_src emacs-lisp
-      (use-package which-key
-      :ensure t
-      :config
-      (which-key-mode))
 #+end_src
 * Vertico
 #+begin_src emacs-lisp

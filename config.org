@@ -58,7 +58,7 @@
   (setq org-agenda-files "~/Org/agenda.org")
   (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-agenda-prefix-format
-	'((agenda . "  %-10t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s")
+	'((agenda . "  %-12t%(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))%s")
 	  (todo . "  %(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))")
 	  (tags . "  %(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))")
 	  (search . "  %(if (org-get-category) (format \"(%s) \" (org-get-category)) (string))")))
